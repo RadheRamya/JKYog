@@ -1,4 +1,4 @@
-package Utilities;
+package com.jkyog.automation.utilities;
 
 public interface DriversPath {
 

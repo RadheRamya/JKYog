@@ -1,4 +1,4 @@
-package Utilities;
+package com.jkyog.automation.utilities;
 
 import base.BaseTest;
 import org.apache.commons.io.FileUtils;

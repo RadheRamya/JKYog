@@ -1,22 +1,13 @@
-package base;
+package com.jkyog.automation.base;
 
-import Utilities.DriversPath;
-import Utilities.ScreenshotUtility;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import com.jkyog.automation.utilities.DriversPath;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -60,7 +51,7 @@ public class BaseTest {
         }
     }
 
-    @BeforeMethod
+  /*  @BeforeMethod
     public void beforeTCExecution(Method method) {
         tcName = method.getName();
         System.out.println("Current Testcase Execution is: " + tcName);
@@ -78,7 +69,7 @@ public class BaseTest {
             System.out.println("TC is Skipped: " + tcName);
             ScreenshotUtility.takesScreenShot();
         }
-    }
+    }*/
 
     public void init() {
         driver.manage().window().maximize();
