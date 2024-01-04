@@ -1,111 +1,95 @@
 package com.jkyog.automation.businessscripts;
 
 import com.jkyog.automation.base.ActionEngine;
-import com.jkyog.automation.base.BaseTest;
 import com.jkyog.automation.customizedexceptions.FrameworkException;
 import com.jkyog.automation.freeregister.pageobjects.FreeRegisterPage;
-import com.jkyog.automation.supporters.ExcelReader;
 import com.jkyog.automation.utilities.PojoReader;
 import com.relevantcodes.extentreports.LogStatus;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.*;
-
-import org.openqa.selenium.support.ui.Select;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.List;
 
-public class FreeRegisterTest extends ActionEngine {
-    public FreeRegisterTest() throws FrameworkException, IOException {
+public class FreeRegistrationIndTest extends ActionEngine {
+    public FreeRegistrationIndTest() throws FrameworkException, IOException {
     }
-    //public static void main(String[] args) {
-    //verifyFreeRegistration();
 
     @Test
-    public void verifyFreeRegistration() throws IOException, FrameworkException {
-        String sheetName = "FreeMembership";
+    public void verifyIndFreeRegistration() throws IOException, FrameworkException {
+        boolean status = true;
+
         String url = PojoReader.getConfPr().getValue("prod_url");
+
         navigateUrl(url);
         getExtentTest().log(LogStatus.PASS, "URL is entered as: " + url);
         FreeRegisterPage.clickOnRegisterlink();
         FreeRegisterPage.clickOnRegisterButtonToFillDetails();
 
 
-        List<String> sheetData = PojoReader.getExcelReader().getSheetData("sheetName", "FreeMembership");
+        Sheet sheetObj = PojoReader.getExcelReader().getSheetObj("sheetName", "FreeMembership");
+        if (sheetObj != null) {
+            //for (int j = 1; j <= sheetObj.getLastRowNum(); j++) {
+            Row row1 = sheetObj.getRow(1);
+            if (row1 != null) {
+
+                for (int i = 0; i < row1.getLastCellNum(); i++) {
+                    Cell cell = row1.getCell(i);
+                    if (cell.getCellType() == CellType.STRING) {
+                        String cellValue = cell.getStringCellValue();
+                    } else if (cell.getCellType() == CellType.NUMERIC) {
+                        String cellValue = cell.getNumericCellValue() + "";
+                    } else if (cell.getCellType() == CellType.BOOLEAN) {
+                        String cellValue = cell.getBooleanCellValue() + "";
+                    }
+                    String firstName = String.valueOf(row1.getCell(i));
+
+                    String lastName = String.valueOf(row1.getCell(i + 1));
+
+                    String userName = String.valueOf(row1.getCell(i + 2));
+
+                    String email = String.valueOf(row1.getCell(i + 3));
+
+                    String password = String.valueOf(row1.getCell(i + 4));
+
+                    String reenterPwd = String.valueOf(row1.getCell(i + 5));
+
+                    String phone = String.valueOf(row1.getCell(i + 6));
+
+                    String city = String.valueOf(row1.getCell(i + 7));
+
+                    String state = String.valueOf(row1.getCell(i + 8));
+
+                    if (i > 0 && i < row1.getLastCellNum()) {
+                        break;
+                    }
 
 
-        if (sheetData != null && !sheetData.isEmpty()) {
-            if (sheetData.size() % 9 != 0) {
-                getExtentTest().log(LogStatus.ERROR, "Invalid data structure: Data should be in multiples of 8 fields.");
-                return;
+                    FreeRegisterPage.enterFirstName(firstName);
+                    FreeRegisterPage.enterLastName(lastName);
+                    FreeRegisterPage.enterUserName(userName);
+                    FreeRegisterPage.enterEmail(email);
+                    FreeRegisterPage.enterPassword(password);
+                    FreeRegisterPage.enterReenterPwd(reenterPwd);
+                    FreeRegisterPage.enterPhoneInd(phone);
+                    FreeRegisterPage.enterCity(city);
+                    FreeRegisterPage.enterState(state);
+
+                    FreeRegisterPage.dropDownCountryInd();
+                    FreeRegisterPage.clickOnTermsAndConditions();
+                    FreeRegisterPage.clickOnRegisterButton();
+
+
+                    FreeRegisterPage.processCellValue(row1.getCell(2));
+                    //FreeRegisterPage.openUNLink();
+                    FreeRegisterPage.clickOnLogoutlink();
+
+
+                }
             }
-            for (int i = 0; i < sheetData.size(); i += 9) {
-                String firstName = sheetData.get(i);
-
-                String lastName = sheetData.get(i + 1);
-
-                String userName = sheetData.get(i + 2);
-
-                String email = sheetData.get(i + 3);
-
-                String password = sheetData.get(i + 4);
-
-                String reenterPwd = sheetData.get(i + 5);
-
-                String phone = sheetData.get(i + 6);
-
-                String city = sheetData.get(i + 7);
-
-                String state = sheetData.get(i + 8);
-
-
-                FreeRegisterPage.enterFirstName(firstName);
-                FreeRegisterPage.enterLastName(lastName);
-                FreeRegisterPage.enterUserName(userName);
-                FreeRegisterPage.enterEmail(email);
-                FreeRegisterPage.enterPassword(password);
-                FreeRegisterPage.enterReenterPwd(reenterPwd);
-                FreeRegisterPage.enterPhone(phone);
-                FreeRegisterPage.enterCity(city);
-                FreeRegisterPage.enterState(state);
-
-                FreeRegisterPage.dropDownCountry();
-                FreeRegisterPage.clickOnTermsAndConditions();
-                FreeRegisterPage.clickOnRegisterButton();
-
-            }
-
         }
-
-        List<String> sheetData1 = PojoReader.getExcelReader().getSheetData("sheetName", "FreeMembership");
-        String welcomeUNData = sheetData1.get(3);
-        FreeRegisterPage.verifyWelcomeUN(welcomeUNData);
-
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

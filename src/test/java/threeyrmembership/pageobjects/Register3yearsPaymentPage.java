@@ -15,10 +15,10 @@ import org.testng.Assert;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Register3yearsINRPage extends BaseTest {
+public class Register3yearsPaymentPage extends BaseTest {
 
     static {
-        PageFactory.initElements(getDriver(), Register3yearsINRPage.class);
+        PageFactory.initElements(getDriver(), Register3yearsPaymentPage.class);
     }
 
     private static final JavascriptExecutor js = (JavascriptExecutor) getDriver();

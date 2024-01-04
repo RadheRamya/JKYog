@@ -1,21 +1,16 @@
 package com.jkyog.automation.businessscripts;
 
 import com.jkyog.automation.base.ActionEngine;
-import com.jkyog.automation.base.BaseTest;
 import com.jkyog.automation.customizedexceptions.FrameworkException;
 import com.jkyog.automation.utilities.PojoReader;
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-public class Login extends ActionEngine {
+public class LoginTest extends ActionEngine {
     @Test
     public void loginTest() throws IOException, FrameworkException {
 

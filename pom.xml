@@ -4,15 +4,56 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${xmlSuiteXMLFileName}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+           <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version> &lt;!&ndash; Replace with the latest version &ndash;&gt;
+                <configuration>
+                    &lt;!&ndash; Include your test classes &ndash;&gt;
+                    &lt;!&ndash;  <includes>
+                          <include>com.jkyog.automation.businessscripts.*</include>
+                      </includes>&ndash;&gt;
+                    &lt;!&ndash; Specify the format of the generated reports &ndash;&gt;
+                    &lt;!&ndash;   <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>&ndash;&gt;
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${xmlSuiteFileName}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <groupId>org.example</groupId>
     <artifactId>JKYog</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <!--  <properties>
+          <maven.compiler.source>11</maven.compiler.source>
+          <maven.compiler.target>11</maven.compiler.target>
+          <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      </properties>-->
 
     <repositories>
         <repository>
@@ -22,6 +63,7 @@
     </repositories>
 
     <dependencies>
+
 
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -42,6 +84,37 @@
         <version>5.0.3</version>
         <scope>test</scope>
     </dependency>
+
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>5.0.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>5.0.0</version>
+    </dependency>
+
+
+    <dependency>
+        <groupId>org.threeten</groupId>
+        <artifactId>threetenbp</artifactId>
+        <version>1.5.0</version> <!-- Replace with the version you want -->
+    </dependency>
+
+    <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.31</version> <!-- Use the version that matches your project requirements -->
+    </dependency>
+
+
+
+
+
+
 
 
     </dependencies>

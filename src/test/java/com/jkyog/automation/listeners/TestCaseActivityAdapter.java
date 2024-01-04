@@ -1,6 +1,6 @@
-package com.jkyog.automationlisteners;
+package com.jkyog.automation.listeners;
 
-import Utilities.ScreenshotUtility;
+import com.jkyog.automation.utilities.ScreenshotUtility;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
@@ -8,6 +8,11 @@ import org.testng.TestListenerAdapter;
 import java.io.IOException;
 
 public class TestCaseActivityAdapter extends TestListenerAdapter {
+    private ScreenshotUtility screenshotUtility;
+
+    public TestCaseActivityAdapter(ScreenshotUtility screenshotUtility) {
+        this.screenshotUtility = screenshotUtility;
+    }
 
     @Override
     public void onTestSuccess(ITestResult result) {
@@ -19,7 +24,7 @@ public class TestCaseActivityAdapter extends TestListenerAdapter {
     public void onTestFailure(ITestResult result) {
         System.out.println("Test Case is failed: " + result.getName());
         try {
-            ScreenshotUtility.takesScreenShot(result.getName());
+            screenshotUtility.takesScreenShot();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -29,9 +34,8 @@ public class TestCaseActivityAdapter extends TestListenerAdapter {
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("Test Case is skipped: " + result.getName());
-        System.out.println("Test Case is failed: " + result.getName());
         try {
-            ScreenshotUtility.takesScreenShot(result.getName());
+            screenshotUtility.takesScreenShot();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -53,6 +57,7 @@ public class TestCaseActivityAdapter extends TestListenerAdapter {
 
     @Override
     public void onFinish(ITestContext context) {
+
         System.out.println("Suite execution is completed");
     }
 }
