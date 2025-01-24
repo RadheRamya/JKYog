@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import threeyrmembership.pageobjects.MembershipPlanPage;
 
+import java.time.Duration;
+
 public class PaymentPage extends BaseTest {
     static {
         PageFactory.initElements(getDriver(), MembershipPlanPage.class);
@@ -126,7 +128,8 @@ public class PaymentPage extends BaseTest {
     public static  String verifyWelcomeUN(String welcomeUNData){
         boolean status = true;
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            //WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
             //WebElement welcomeUN = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(@class, 'elementor-item') and contains(text(), 'Welcome')][1]")));
             WebElement welcomeUN = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(@class, 'elementor-item') and contains(text(), 'Welcome')])[1]")));
             //wait.until(ExpectedConditions.visibilityOf(welcomeUN));
@@ -170,6 +173,9 @@ public class PaymentPage extends BaseTest {
     public static void clickOnLogoutlink() {
         boolean status = true;
         try {
+           // WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+            WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='elementor-sub-item menu-link' and text()='Logout'][1]")));
             Assert.assertTrue(logout.isDisplayed() && logout.isEnabled());
             getExtentTest().log(LogStatus.PASS, "Logout element is displayed and enabled ");
 
@@ -184,6 +190,29 @@ public class PaymentPage extends BaseTest {
                 getExtentTest().log(LogStatus.PASS, "Action is done on Logout element");
             } else
                 getExtentTest().log(LogStatus.FAIL, "Action is NOT done on Logout element");
+        }
+    }
+
+    public static void clickOnWelcomeOpenlink() {
+        boolean status = true;
+        try {
+           // WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+            WebElement welcomelink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@onclick='return true' and starts-with(text(), 'Welcome')][1]")));
+            //wait.until(ExpectedConditions.elementToBeClickable(welcomelink)).click();
+
+            Assert.assertTrue(welcomelink.isDisplayed() && welcomelink.isEnabled());
+            getExtentTest().log(LogStatus.PASS, "Welcome link element is displayed and enabled ");
+            welcomelink.click();
+            getExtentTest().log(LogStatus.PASS, "Clicking action is done on Welcome link element ");
+        } catch (Exception exception) {
+            getExtentTest().log(LogStatus.FAIL, "Welcome link element is NOT displayed and enabled");
+            status = false;
+        } finally {
+            if (status) {
+                getExtentTest().log(LogStatus.PASS, "Action is done on Welcome link element");
+            } else
+                getExtentTest().log(LogStatus.FAIL, "Action is NOT done on Welcome link element");
         }
     }
 

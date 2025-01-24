@@ -1,0 +1,11 @@
+xml version=1.0 encoding=UTF-8
+!DOCTYPE suite SYSTEM httptestng.orgtestng-1.0.dtd
+suite name=Suite
+    parameter name=browser value=ieparameter
+    test thread-count=5 name=Test
+        classes
+            class name=com.jkyog.automation.businessscripts.FreeRegistrationTest
+            class name=PracticeTests.FreeRegistrationUSTest
+        classes
+    test
+suite

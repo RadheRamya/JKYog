@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,28 +23,28 @@ public class FreeRegisterPage extends BaseTest {
 
     private static final JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
-    @FindBy(xpath = "//span[@class='elementor-icon-list-text' and text() = 'Register']")
-    private static WebElement registerLink;
+    @FindBy(xpath = "//span[text() = 'Log In | Register']")
+    private static WebElement loginRegisterLink;
 
     @FindBy(xpath = "//span[@class='elementor-button-text' and text()='Register']")
     private static WebElement registerButton1;
 
-    @FindBy(xpath = "//input[@id='ff_11_names_first_name_']")
+    @FindBy(xpath = "//input[@id='ff_17_names_first_name_']")
     private static WebElement firstName;
 
-    @FindBy(id = "ff_11_names_last_name_")
+    @FindBy(id = "ff_17_names_last_name_")
     private static WebElement lastName;
 
-    @FindBy(id = "ff_11_input_text")
+    @FindBy(id = "ff_17_input_text")
     private static WebElement userName;
 
-    @FindBy(id = "ff_11_email")
+    @FindBy(id = "ff_17_email")
     private static WebElement email;
 
-    @FindBy(id = "ff_11_password")
+    @FindBy(id = "ff_17_password")
     private static WebElement password;
 
-    @FindBy(id = "ff_11_password_2")
+    @FindBy(id = "ff_17_password_2")
     private static WebElement reenter_pwd;
 
     @FindBy(id = "ff_11_phone")
@@ -89,13 +90,13 @@ public class FreeRegisterPage extends BaseTest {
     private static WebElement usOption;
 
 
-     public static void clickOnRegisterlink() {
+     public static void clickOnLoginRegisterlink() {
         boolean status = true;
         try {
-            Assert.assertTrue(registerLink.isDisplayed() && registerLink.isEnabled());
+            Assert.assertTrue(loginRegisterLink.isDisplayed() && loginRegisterLink.isEnabled());
             getExtentTest().log(LogStatus.PASS, "Register element is displayed and enabled ");
 
-            registerLink.click();
+            loginRegisterLink.click();
             getExtentTest().log(LogStatus.PASS, "Clicking action is done on Register element ");
 
         } catch (Exception exception) {
@@ -596,7 +597,7 @@ public class FreeRegisterPage extends BaseTest {
     public static  String verifyWelcomeUN(String welcomeUNData){
         boolean status = true;
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
             //wait.until(ExpectedConditions.visibilityOf(welcomeUN));
            // wait.until(ExpectedConditions.visibilityOf(welcomeUN));
 
@@ -637,7 +638,7 @@ public class FreeRegisterPage extends BaseTest {
    public static void openUNLink(){
         boolean status = true;
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
             WebElement welcomeUNLink = getDriver().findElement(By.xpath("(//a[contains(text(), 'Welcome') and @class='elementor-item elementor-item-anchor menu-link has-submenu'])[1]"));
             //WebElement welcomeUNLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(), 'Welcome') and @class='elementor-item elementor-item-anchor menu-link has-submenu'])[1]")));
             welcomeUNLink.click();

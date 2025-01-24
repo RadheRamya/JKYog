@@ -37,23 +37,10 @@ public class Registration extends BaseTest {
         WebElement register = getDriver().findElement(By.xpath(registerIdValue));
         register.click();
         getExtentTest().log(LogStatus.PASS, "Clicking on register link: "+register);
-        // Create a JavascriptExecutor instance
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        // Scroll down by a specified number of pixels
-        //int scrollPixels = 500; // Adjust the value as needed
-        //js.executeScript("window.scrollBy(0, " + scrollPixels + ");");
-        //WebDriverWait wait = new WebDriverWait(driver, 20);
-        //wait.until(ExpectedConditions.elementToBeClickable(tnc));
-        //if (!tnc.isSelected()) {
-
-               /* JavascriptExecutor executor = (JavascriptExecutor) driver;
-                executor.executeScript("arguments[0].click();", tnc);*/
 
 
 
-        //getDriver().findElement(By.xpath("//span[text() = 'Log In']")).click();
-        //getDriver().findElement(By.xpath("//span[text() ='Register']")).click();
+
     }
 
 }

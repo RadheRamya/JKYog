@@ -4,10 +4,19 @@
     <parameter name="browser" value="chrome"></parameter>
     <test thread-count="5" name="Test">
         <classes>
-           <!-- <class name="com.jkyog.automation.businessscripts.FreeRegistrationIndTest"/>
-            <class name="com.jkyog.automation.businessscripts.FreeRegistrationUSTest"/>-->
-            <!--<class name="com.jkyog.automation.businessscripts.ThreeYearMembershipInd"/>-->
-            <class name="com.jkyog.automation.businessscripts.ThreeYearMembershipUS"/>
+          <!--  <class name="com.jkyog.automation.businessscripts.FreeRegistrationTest"/>-->
+         <!--   <class name="PracticeTests.FreeRegistrationUSTest"/>-->
+        <!--    <class name="com.jkyog.automation.businessscripts.ThreeYearMembershipInr"/>-->
+           <!-- <class name="com.jkyog.automation.businessscripts.ThreeYearMembershipUsd"/>-->
+            <class name="com.jkyog.automation.businessscripts.LoginTest"/>
+           <!-- <class name="com.jkyog.automation.businessscripts.LostYourPasswordTest"/>-->
+           <!-- <class name="com.jkyog.automation.businessscripts.CourseTest"/>-->
+          <!--  <class name="com.jkyog.automation.businessscripts.WorkFLowTest"/>-->
+          <!--  <class name="com.jkyog.automation.businessscripts.LogoutTest"/>-->
+          <!--  <class name="com.jkyog.automation.businessscripts.OneYearMembershipUsd"/>-->
+       <!--       <class name="com.jkyog.automation.businessscripts.OneYearMembershipInr"/>-->
+            <!--<class name="com.jkyog.automation.businessscripts.PaidCourse_WF_OneYearMembershipInr"/>-->
+
         </classes>
     </test>
 </suite>
